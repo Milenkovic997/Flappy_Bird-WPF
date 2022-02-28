@@ -1,0 +1,100 @@
+﻿<Window x:Class="FlappyBird_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlappyBird_WPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="400" ResizeMode="NoResize" WindowStyle="None" PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="btnCenter">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                <Setter Property="Foreground" Value="White" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="#FF580606">
+                                <Grid>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                </Trigger>
+
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid x:Name="mainGrid">
+        <Image Source="/background-day.png" Width="400"/>
+        <Grid x:Name="spPipes" Width="1000">
+            <StackPanel x:Name="spPipe1" Margin="-720,-280,0,0" Height="966" Width="76">
+                <Image x:Name="imgTopPipe1" Source="/pipe-green.png" Height="418" Width="76" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Image x:Name="imgBottonPipe1" Source="/pipe-green.png" Height="418" Width="76" Margin="0,150,0,0"/>
+            </StackPanel>
+            <StackPanel x:Name="spPipe2" Margin="400,-200,0,0" Width="76" Height="966">
+                <Image x:Name="imgTopPipe2" Source="/pipe-green.png" Height="418" Width="76" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Image x:Name="imgBottonPipe2" Source="/pipe-green.png" Height="418" Width="76" Margin="0,150,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="imgGround" OpacityMask="Black" Source="/base.png" Margin="0,591,0,0" Width="400" Height="136"/>
+            <Image x:Name="imgGround2" OpacityMask="Black" Source="/base.png" Margin="0,591,0,0" Width="400" Height="136"/>
+        </StackPanel>
+        <Image x:Name="imgPlayer" Source="/yellowbird-downflap.png" Margin="64,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Height="32">
+            <Image.RenderTransform>
+                <RotateTransform Angle="0" />
+            </Image.RenderTransform>
+        </Image>
+        <StackPanel Margin="0,70,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Image x:Name="imgFirstNumber" Source="/0.png" Height="39" Margin="0,0,2,0" Visibility="Collapsed"/>
+            <Image x:Name="imgSecondNumber" Source="/0.png" Height="39" Visibility="Collapsed"/>
+            <Image x:Name="imgThirdNumber" Source="/0.png" Height="39" Margin="2,0,0,0"/>
+        </StackPanel>
+
+        <Image x:Name="imgGameOver" Source="/gameover.png" VerticalAlignment="Top" Margin="0,150,0,0" Width="360" Visibility="Collapsed"/>
+        <Image x:Name="imgStartGame" Source="/message.png" VerticalAlignment="Top" Margin="64,168,0,0" Height="412" HorizontalAlignment="Left"/>
+
+        <Grid x:Name="whiteScreen" Background="White" Visibility="Visible" Opacity="0" PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp"/>
+        <Button x:Name="btnReset" Margin="0,678,0,10" Style="{DynamicResource btnCenter}" HorizontalAlignment="Center" Width="293" Click="btnReset_Click" >
+            <materialDesign:PackIcon Kind="Restart" Height="26" Width="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Button>
+        <Grid Height="33" VerticalAlignment="Top">
+            <StackPanel Height="33" Background="#FF1D1D1D" MouseLeftButtonDown="dragFrameFunction" VerticalAlignment="Top"/>
+            <Grid x:Name="btnExit" Height="33" Width="33" Background="#FF1D1D1D" HorizontalAlignment="Right" MouseEnter="btnExit_MouseEnter" MouseLeave="btnExit_MouseLeave" MouseLeftButtonDown="btnExit_MouseLeftButtonDown">
+                <materialDesign:PackIcon Kind="CloseBold" x:Name="lblExit" Foreground="#FFC5C5C5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="44" MouseLeftButtonDown="btnExit_MouseLeftButtonDown" Width="30"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

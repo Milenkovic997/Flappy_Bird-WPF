@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>FlappyBird_WPF</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="0.png" />
+    <None Remove="background-day.png" />
+    <None Remove="base.png" />
+    <None Remove="gameover.png" />
+    <None Remove="message.png" />
+    <None Remove="pipe-green.png" />
+    <None Remove="yellowbird-downflap.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.5-ci94" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.4.0-ci94" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="0.png" />
+    <Resource Include="background-day.png" />
+    <Resource Include="base.png" />
+    <Resource Include="gameover.png" />
+    <Resource Include="message.png" />
+    <Resource Include="pipe-green.png" />
+    <Resource Include="yellowbird-downflap.png" />
+  </ItemGroup>
+
+</Project>
